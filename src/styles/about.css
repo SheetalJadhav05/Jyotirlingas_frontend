@@ -1,0 +1,54 @@
+.about {
+  padding: 60px 20px;
+  background: #fef3c7;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  color: #92400e;
+  margin-bottom: 20px;
+}
+
+.about-text {
+  max-width: 800px;
+  margin: auto;
+  color: #555;
+  margin-bottom: 15px;
+  line-height: 1.7;
+}
+
+/* 🔥 FINAL FIX */
+.about .about-highlights {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 25px !important;
+  margin-top: 40px;
+  flex-wrap: wrap !important;
+}
+
+/* 🔥 CARD FIX */
+.about .highlight-card {
+  width: 300px !important;
+  background: linear-gradient(135deg, #d4af37, #e5c158);
+  padding: 20px;
+  border-radius: 15px;
+  color: #333;
+  transition: all 0.5s ease;
+
+  opacity: 1 !important; /* 🔥 FORCE visible */
+  transform: translateY(0) !important;
+}
+
+/* OPTIONAL HOVER */
+.about .highlight-card:hover {
+  transform: translateY(-8px) scale(1.05);
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .about .highlight-card {
+    width: 100% !important;
+    max-width: 320px;
+  }
+}

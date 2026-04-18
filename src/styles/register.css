@@ -1,0 +1,125 @@
+/* ==========================================
+   REGISTER PAGE STYLES
+   ========================================== */
+
+.card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  max-width: 450px;
+  width: 100%;
+  margin: 2rem auto;
+  animation: fadeInUp 0.5s ease-out;
+}
+
+.auth-card {
+  text-align: center;
+}
+
+.auth-card h1 {
+  color: #ea580c;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.form input:focus {
+  outline: none;
+  border-color: #ea580c;
+  box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.1);
+}
+
+.form button {
+  width: 100%;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, #d97706 0%, #ea580c 100%);
+  color: #fef3c7;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(217, 119, 6, 0.3);
+}
+
+.form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(217, 119, 6, 0.4);
+  background: linear-gradient(135deg, #ea580c 0%, #d97706 100%);
+}
+
+.form button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.error {
+  color: #dc2626;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+.success-msg {
+  color: #16a34a;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+.card p {
+  margin-top: 1.5rem;
+  color: #666;
+}
+
+.card p a {
+  color: #ea580c;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.card p a:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================
+   RESPONSIVE STYLES
+   ========================================== */
+
+@media (max-width: 768px) {
+  .card {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+
+  .auth-card h1 {
+    font-size: 1.8rem;
+  }
+
+  .form input {
+    padding: 10px 12px;
+    font-size: 0.95rem;
+  }
+
+  .form button {
+    padding: 12px 18px;
+    font-size: 1rem;
+  }
+}
