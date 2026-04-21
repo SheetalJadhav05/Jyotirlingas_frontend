@@ -14,7 +14,9 @@ const Jyotirlingas = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const res = await axios.get("http://localhost:5000/api/jyotirlingas");
+        const res = await axios.get(
+          "https://jyotirlingas-backend.vercel.app/api/jyotirlingas",
+        );
         setData(res.data.data || []);
       } catch (err) {
         console.error("Error fetching data:", err);

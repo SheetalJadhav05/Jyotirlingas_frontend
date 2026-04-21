@@ -49,13 +49,16 @@ const BlogPostPage = () => {
 
     try {
       // 3. Backend API Call
-      const res = await fetch("http://localhost:5000/api/blogs", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
+      const res = await fetch(
+        "https://jyotirlingas-backend.vercel.app/api/blogs",
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          body: formData,
         },
-        body: formData,
-      });
+      );
 
       const data = await res.json();
 

@@ -24,9 +24,12 @@ const ManagePost = () => {
 
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:5000/api/blogs/my-blogs", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const res = await fetch(
+        "https://jyotirlingas-backend.vercel.app/api/blogs/my-blogs",
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        },
+      );
       const data = await res.json();
       if (data.success) setBlogs(data.data);
     } catch (err) {
@@ -50,8 +53,8 @@ const ManagePost = () => {
     if (image) formData.append("image", image);
 
     const url = editId
-      ? `http://localhost:5000/api/blogs/${editId}`
-      : "http://localhost:5000/api/blogs";
+      ? `https://jyotirlingas-backend.vercel.app/api/blogs/${editId}`
+      : "https://jyotirlingas-backend.vercel.app/api/blogs";
 
     setSubmitting(true);
     try {
@@ -99,10 +102,13 @@ const ManagePost = () => {
 
     const token = localStorage.getItem("token");
     try {
-      const res = await fetch(`http://localhost:5000/api/blogs/${blogId}`, {
-        method: "DELETE",
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const res = await fetch(
+        `https://jyotirlingas-backend.vercel.app/api/blogs/${blogId}`,
+        {
+          method: "DELETE",
+          headers: { Authorization: `Bearer ${token}` },
+        },
+      );
       if (res.ok) {
         setSuccessModal({
           show: true,
@@ -268,7 +274,7 @@ const ManagePost = () => {
                     <td>
                       <div className="table-image-container">
                         <img
-                          src={`http://localhost:5000/${blog.image}`}
+                          src={`https://jyotirlingas-backend.vercel.app/${blog.image}`}
                           alt={blog.title}
                           className="table-image"
                           onError={(e) =>

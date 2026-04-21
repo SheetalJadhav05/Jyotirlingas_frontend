@@ -24,7 +24,9 @@ const Blog = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/blogs");
+        const res = await axios.get(
+          "https://jyotirlingas-backend.vercel.app/api/blogs",
+        );
         if (res.data.success) {
           setDbBlogs(res.data.data);
         }
@@ -40,7 +42,9 @@ const Blog = () => {
       id: b._id,
       title: b.title,
       location: b.location || "Pilgrimage Site",
-      image: b.image ? `http://localhost:5000/${b.image}` : mahakalImg,
+      image: b.image
+        ? `https://jyotirlingas-backend.vercel.app/${b.image}`
+        : mahakalImg,
       shortDesc: b.content.substring(0, 100) + "...",
       fullDesc: b.content,
     })),

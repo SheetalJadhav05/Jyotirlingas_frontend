@@ -54,7 +54,7 @@ const Gallery = () => {
           >
             <div className="image-box">
               <img
-                src={`http://localhost:5000/uploads/${imageObj.image}`}
+                src={`https://jyotirlingas-backend.vercel.app/uploads/${imageObj.image}`}
                 alt={imageObj.title}
               />
               <div className="hover-overlay">
@@ -83,7 +83,7 @@ const Gallery = () => {
             onClick={(e) => e.stopPropagation()}
           >
             <img
-              src={`http://localhost:5000/uploads/${galleryImages[currentIndex].image}`}
+              src={`https://jyotirlingas-backend.vercel.app/uploads/${galleryImages[currentIndex].image}`}
               alt={galleryImages[currentIndex].title}
             />
             <div className="lightbox-caption">

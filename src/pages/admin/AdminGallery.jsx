@@ -295,7 +295,7 @@ const AdminGallery = () => {
                 <div key={item._id} className="admin-gallery-item">
                   {/* Image */}
                   <img
-                    src={`http://localhost:5000/uploads/${item.image}`}
+                    src={`https://jyotirlingas-backend.vercel.app/uploads/${item.image}`}
                     alt={item.title}
                     className="admin-gallery-image"
                     onError={(e) => {

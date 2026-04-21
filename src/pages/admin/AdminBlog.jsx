@@ -339,7 +339,7 @@ const AdminBlog = () => {
                   <tr key={i._id}>
                     <td>
                       <img
-                        src={`http://localhost:5000/${i.image}`}
+                        src={`https://jyotirlingas-backend.vercel.app/${i.image}`}
                         alt="temple"
                         style={{
                           width: "60px",
