@@ -54,7 +54,7 @@ const Footer = () => {
 
       {/* Copyright */}
       <div className="footer-bottom">
-        <p>&copy; 2026 Jyotirlingas Journey. All rights reserved.</p>
+        <p>&copy; 2026 @ Jyotirlingas Journey. All rights reserved.</p>
       </div>
     </footer>
   );
