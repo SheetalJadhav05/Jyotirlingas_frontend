@@ -8,6 +8,9 @@ const Navbar = ({ onLoginClick }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const [currentUser, setCurrentUser] = useState(null);
+
+  // SCROLL EFFECT
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -15,6 +18,26 @@ const Navbar = ({ onLoginClick }) => {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // 🔥 INITIAL USER LOAD (same as before)
+  useEffect(() => {
+    const stored = localStorage.getItem("user");
+    setCurrentUser(stored ? JSON.parse(stored) : null);
+  }, [location.pathname]);
+
+  // 🔥 NEW: LIVE UPDATE WITHOUT REFRESH
+  useEffect(() => {
+    const updateUser = () => {
+      const stored = localStorage.getItem("user");
+      setCurrentUser(stored ? JSON.parse(stored) : null);
+    };
+
+    window.addEventListener("userChanged", updateUser);
+
+    return () => {
+      window.removeEventListener("userChanged", updateUser);
+    };
   }, []);
 
   const toggleMenu = () => {
@@ -32,17 +55,15 @@ const Navbar = ({ onLoginClick }) => {
     return location.pathname === path;
   };
 
-  const [currentUser, setCurrentUser] = useState(null);
-
-  useEffect(() => {
-    const stored = localStorage.getItem("user");
-    setCurrentUser(stored ? JSON.parse(stored) : null);
-  }, [location.pathname]);
-
+  // 🔥 UPDATED LOGOUT
   const handleLogout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
     setCurrentUser(null);
+
+    // 🔥 IMPORTANT (instant update)
+    window.dispatchEvent(new Event("userChanged"));
+
     navigate("/home");
   };
 
@@ -78,7 +99,9 @@ const Navbar = ({ onLoginClick }) => {
           <li>
             <Link
               to="/jyotirlingas"
-              className={`nav-link ${isActive("/jyotirlingas") ? "active" : ""}`}
+              className={`nav-link ${
+                isActive("/jyotirlingas") ? "active" : ""
+              }`}
               onClick={closeMenu}
             >
               Jyotirlingas
@@ -105,7 +128,9 @@ const Navbar = ({ onLoginClick }) => {
           <li>
             <Link
               to="/dashboard/post-blog"
-              className={`nav-link ${isActive("/dashboard/post-blog") ? "active" : ""}`}
+              className={`nav-link ${
+                isActive("/dashboard/post-blog") ? "active" : ""
+              }`}
               onClick={closeMenu}
             >
               Post Blog
@@ -154,6 +179,7 @@ const Navbar = ({ onLoginClick }) => {
               onClick={() => {
                 const isHome =
                   location.pathname === "/" || location.pathname === "/home";
+
                 if (isHome && onLoginClick) {
                   onLoginClick();
                 } else {

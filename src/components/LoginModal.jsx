@@ -31,6 +31,7 @@ const LoginModal = ({
 
   const handleLoginChange = (e) =>
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
+
   const handleRegisterChange = (e) =>
     setRegisterData({ ...registerData, [e.target.name]: e.target.value });
 
@@ -49,6 +50,9 @@ const LoginModal = ({
 
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("user", JSON.stringify(response.data.user));
+
+        // 🔥 NAVBAR UPDATE
+        window.dispatchEvent(new Event("userChanged"));
 
         setTimeout(() => {
           setSuccess("");
@@ -120,12 +124,17 @@ const LoginModal = ({
             {activeTab === "login" ? "Login" : "Register"}
           </h2>
 
+          {/* 🔥 AUTOFILL BLOCK TRICK */}
           <form
+            autoComplete="off"
             onSubmit={
               activeTab === "login" ? handleLoginSubmit : handleRegisterSubmit
             }
-            autoComplete="off"
           >
+            {/* Hidden fields to block autofill */}
+            <input type="text" style={{ display: "none" }} />
+            <input type="password" style={{ display: "none" }} />
+
             {activeTab === "register" ? (
               <>
                 <div className="form-group">
@@ -137,6 +146,7 @@ const LoginModal = ({
                     value={registerData.name}
                     onChange={handleRegisterChange}
                     required
+                    autoComplete="off"
                   />
                 </div>
                 <div className="form-group">
@@ -148,7 +158,7 @@ const LoginModal = ({
                     value={registerData.email}
                     onChange={handleRegisterChange}
                     required
-                    autoComplete="new-password"
+                    autoComplete="off"
                   />
                 </div>
                 <div className="form-group">
@@ -175,7 +185,7 @@ const LoginModal = ({
                     value={loginData.email}
                     onChange={handleLoginChange}
                     required
-                    autoComplete="one-time-code"
+                    autoComplete="off"
                   />
                 </div>
                 <div className="form-group">
@@ -187,15 +197,17 @@ const LoginModal = ({
                     value={loginData.password}
                     onChange={handleLoginChange}
                     required
-                    autoComplete="one-time-code"
+                    autoComplete="new-password"
                   />
                 </div>
+
                 <div className="checkbox-row">
                   <input type="checkbox" id="remember" />
                   <label htmlFor="remember">Remember me</label>
                 </div>
               </>
             )}
+
             <button
               type="submit"
               className="submit-yellow-btn"
@@ -213,4 +225,5 @@ const LoginModal = ({
     </div>
   );
 };
+
 export default LoginModal;
